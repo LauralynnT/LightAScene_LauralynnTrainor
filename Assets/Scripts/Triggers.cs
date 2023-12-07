@@ -20,10 +20,17 @@ public class Triggers : MonoBehaviour
     public GameObject lightOff6;
     public GameObject door;
     public GameObject doorAnimation;
-    public GameObject light1;
-    public GameObject light2;
-    public GameObject lightsOff;
-    public GameObject lightsOn;
+    public GameObject theCube;
+    public GameObject labDoor;
+    public GameObject labLight;
+    public GameObject labLight1;
+    public GameObject labLight2;
+    public GameObject labLight3;
+    public GameObject labOff;
+    public GameObject labOff1;
+    public GameObject labOff2;
+    public GameObject labOff3;
+    public GameObject theBed;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +53,19 @@ public class Triggers : MonoBehaviour
         }
         if (other.gameObject.CompareTag("OtherEndTrigger"))
         {
-            
-
+            other.gameObject.SetActive(false);
+            theCube.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("DoorCloseTrigger"))
+        {
+            other.gameObject.SetActive(false);
+            theCube.SetActive(false);
+            StartCoroutine(LabDoorSlam());
+        }
+        if (other.gameObject.CompareTag("BedTrigger"))
+        {
+            other.gameObject.SetActive(false);
+            theBed.SetActive(true);
         }
     }
     IEnumerator DoorSlam()
@@ -56,6 +74,19 @@ public class Triggers : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         lightOn6.SetActive(false);
         lightOff6.gameObject.SetActive(true);
+    }
+    IEnumerator LabDoorSlam()
+    {
+        labDoor.SetActive(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        labLight.SetActive(false);
+        labOff.SetActive(true);
+        labLight1.SetActive(false);
+        labOff1.SetActive(true);
+        labLight2.SetActive(false);
+        labOff2.SetActive(true);
+        labLight3.SetActive(false);
+        labOff3.SetActive(true);
     }
     IEnumerator LightsOut()
     {

@@ -8,7 +8,7 @@ public class Flickers : MonoBehaviour
     public GameObject light2;
     public GameObject lightOff;
     public GameObject lightOn;
-
+    public GameObject theCube;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,18 @@ public class Flickers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 20; i++)
+        while (theCube.active == true)
         {
-            float time = Random.Range(0.5f, 4.5f);
-            StartCoroutine(LightFlicker(time));
+            for (int i = 0; i < 100; i++) 
+            {
+                float time = Random.Range(0.5f, 2.5f);
+                StartCoroutine(LightFlicker(time));
+                if (theCube.active == false) 
+                {
+                    break; 
+                }
+            }
+            theCube.SetActive(false);
         }
     }
     private IEnumerator LightFlicker(float time)

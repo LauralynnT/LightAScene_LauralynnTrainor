@@ -9,6 +9,8 @@ TagManager:
   - LightOff
   - StairTrigger
   - OtherEndTrigger
+  - DoorCloseTrigger
+  - BedTrigger
   layers:
   - Default
   - TransparentFX
